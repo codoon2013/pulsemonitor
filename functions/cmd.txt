@@ -30,7 +30,7 @@ gcloud pubsub topics list --project=pulsemonitor-da477
 
 
 正式环境
-gcloud functions deploy calorie_scan --project=pulsemonitor-da477 --gen2 --runtime=python311 --region=us-west2 --source=. --entry-point=calorie_scan --trigger-http --allow-unauthenticated --log-http --min-instances=1 --max-instances=20 --cpu=2 --memory=2Gi --concurrency=100
+gcloud functions deploy pulse_monitor --project=pulsemonitor-da477 --gen2 --runtime=python311 --region=us-central1 --source=. --entry-point=pulse_monitor --trigger-http --allow-unauthenticated --log-http --min-instances=1 --max-instances=20 --cpu=2 --memory=2Gi --concurrency=100
 
 gcloud functions deploy send-email-worker \
     --runtime=python311 \
@@ -38,7 +38,7 @@ gcloud functions deploy send-email-worker \
     --source=. \
     --entry-point=send_email_worker \
     --trigger-topic=email-tasks \
-    --project=caloriescan
+    --project=pulsemonitor-da477
 
 firebase deploy --only functions:send-email-worker
 
