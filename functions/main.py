@@ -86,7 +86,7 @@ def get_uid():
 @app.post("/pay/get_uid")
 def pay_uid():      
     server_key = request.headers.get("ServerKey")
-    if server_key is None or server_key != "MXSCG08XOC":
+    if server_key is None or server_key != "MXSCG08XOE":
         return "Bad Request", 400
     
     data = {"state": 0,"msg": "success", "data": { "id":g.uid }}
@@ -95,7 +95,7 @@ def pay_uid():
 @app.post("/pay/callback")
 def pay_callback():          
     server_key = request.headers.get("ServerKey")
-    if server_key is None or server_key != "MXSCG08XOC":
+    if server_key is None or server_key != "MXSCG08XOE":
         return "Bad Request", 400
           
     data = request.get_json()

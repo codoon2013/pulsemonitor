@@ -1,6 +1,6 @@
 支付接口
 
-校验 key MXSCG08XOB
+校验 key MXSCG08XOE
 
 正式地址
 
