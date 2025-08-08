@@ -1,0 +1,101 @@
+firebase init functions
+gcloud auth application-default login
+/Users/codoon/.config/gcloud/application_default_credentials.json
+
+
+
+export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
+
+
+gcloud auth list
+gcloud config set account  zhangjl@codoon.com
+gcloud config set account  liaosong@codoon.com
+
+
+firebase login:list
+firebase login:use zhangjl@codoon.com
+firebase login:use liaosong@codoon.com
+
+
+firebase use default
+firebase use caloriescan
+
+
+firebase projects:list
+
+firebase emulators:start
+
+
+gcloud pubsub topics list --project=pulsemonitor-da477
+
+
+正式环境
+gcloud functions deploy calorie_scan --project=pulsemonitor-da477 --gen2 --runtime=python311 --region=us-west2 --source=. --entry-point=calorie_scan --trigger-http --allow-unauthenticated --log-http --min-instances=1 --max-instances=20 --cpu=2 --memory=2Gi --concurrency=100
+
+gcloud functions deploy send-email-worker \
+    --runtime=python311 \
+    --region=us-west2 \
+    --source=. \
+    --entry-point=send_email_worker \
+    --trigger-topic=email-tasks \
+    --project=caloriescan
+
+firebase deploy --only functions:send-email-worker
+
+
+
+测试环境uid
+
+廖松 hrY2i9osHhd40rRLDSHETRgRMBy2
+{
+  member_rights{
+    expires_time:2711987200
+  }
+}
+
+ULSmWhBmGGeofO9nw7GcO45YVav2
+
+正式 
+
+廖松 i6iZQ4eRS5eQJ1POOsTk6Iz7cJs1
+
+
+### 审核
+
+curl -X "POST" "https://calorie-scan-h2lzxyai2a-wl.a.run.app/server_config/update" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "isChecking": false
+}'
+
+# 开启审核
+curl -X "POST" "https://calorie-scan-h2lzxyai2a-wl.a.run.app/server_config/update" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "isChecking": true
+}'
+
+### 促销
+
+curl -X "POST" "https://calorie-scan-h2lzxyai2a-wl.a.run.app/server_config/update" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "isSale": false
+}'
+
+# 开启促销
+curl -X "POST" "https://calorie-scan-h2lzxyai2a-wl.a.run.app/server_config/update" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "isSale": true
+}'
+
+#获取状态
+https://calorie-scan-h2lzxyai2a-wl.a.run.app/server_config/get
+
+
+
+
+https://sleep-master-xfji34ztqa-wl.a.run.app/tongji/cs_02_view/count_list
+
+gcloud tasks queues create YOUR_QUEUE_NAME --location=YOUR_LOCATION
